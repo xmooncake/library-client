@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 
-class EmailInputField extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
+class LoginInputField extends StatelessWidget {
+  const LoginInputField({
+    super.key,
+    required this.controller,
+    required this.labelText,
+    required this.hintText,
+    required this.iconData,
+    required this.validator,
+  });
+
+  final String labelText;
+  final String hintText;
+  final IconData iconData;
+  final TextEditingController controller;
+  final String? Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: emailController,
-      keyboardType: TextInputType.emailAddress,
-      decoration: const InputDecoration(
-        labelText: 'Email address',
-        hintText: 'Enter your email address',
-        prefixIcon: Icon(Icons.email),
-        border: OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: Icon(iconData),
+        border: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blue, width: 2.0),
         ),
       ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter your email address';
-        }
-        if (!value.contains('@')) {
-          return 'Please enter a valid email address';
-        }
-        return null;
-      },
+      validator: validator,
     );
   }
 }
