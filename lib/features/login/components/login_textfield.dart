@@ -7,14 +7,14 @@ class LoginInputField extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.iconData,
-    required this.validator,
+    this.validator,
   });
 
   final String labelText;
   final String hintText;
   final IconData iconData;
   final TextEditingController controller;
-  final String? Function(String?) validator;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
