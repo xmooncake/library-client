@@ -7,6 +7,12 @@ sealed class AppEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AppLoggedInEvent extends AppEvent {}
+class AppLoggedInEvent extends AppEvent {
+  const AppLoggedInEvent({
+    required this.user,
+  });
+
+  final User user;
+}
 
 class AppLoggedOutEvent extends AppEvent {}
