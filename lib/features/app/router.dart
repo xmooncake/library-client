@@ -12,8 +12,8 @@ class AppRouter {
     final appBloc = BlocProvider.of<AppBloc>(context);
 
     _router = GoRouter(
-      initialLocation: '/',
-      // initialLocation: '/auth',
+      // initialLocation: '/',
+      initialLocation: '/auth',
       routes: [
         GoRoute(
           path: '/',

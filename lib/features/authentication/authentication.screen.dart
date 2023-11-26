@@ -66,7 +66,13 @@ class _AuthenticationView extends StatelessWidget {
                     const SizedBox(height: 30),
                     BlocBuilder<AuthenticationBloc, AuthenticationState>(
                       builder: (context, state) {
-                        return const SizedBox();
+                        return AuthenticationButton(
+                          onPressed: () => context
+                              .read<AuthenticationBloc>()
+                              .add(AuthenticationOnAuthCheckRequestedEvent()),
+                          isLoading: state is AuthenticationLoadingState,
+                        );
+
                         // final isLoading =
                         //     state.status == AuthenticationStatus.loading;
 
