@@ -12,6 +12,8 @@ class AppRouter {
     final appBloc = BlocProvider.of<AppBloc>(context);
 
     _router = GoRouter(
+      initialLocation: '/',
+      // initialLocation: '/auth',
       routes: [
         GoRoute(
           path: '/',
@@ -22,20 +24,20 @@ class AppRouter {
           builder: (context, state) => const AuthenticationScreen(),
         ),
       ],
-      redirect: (context, state) {
-        final isLoggedIn = appBloc.state is AppAuthenticatedState;
-        final goingToLoginPage = state.uri.toString() == '/auth';
+      // redirect: (context, state) {
+      //   final isLoggedIn = appBloc.state is AppAuthenticatedState;
+      //   final goingToLoginPage = state.uri.toString() == '/auth';
 
-        if (!isLoggedIn && !goingToLoginPage) {
-          return '/auth';
-        }
+      //   if (!isLoggedIn && !goingToLoginPage) {
+      //     return '/auth';
+      //   }
 
-        if (isLoggedIn && goingToLoginPage) {
-          return '/';
-        }
+      //   if (isLoggedIn && goingToLoginPage) {
+      //     return '/';
+      //   }
 
-        return null;
-      },
+      //   return null;
+      // },
     );
   }
 

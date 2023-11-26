@@ -11,6 +11,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => HomeCubit(),
+      child: const _HomeScreenView(),
+    );
+  }
+}
+
+class _HomeScreenView extends StatelessWidget {
+  const _HomeScreenView();
+
+  @override
+  Widget build(BuildContext context) {
     final controller = context.read<HomeCubit>().drawerController;
 
     return BlocProvider(
