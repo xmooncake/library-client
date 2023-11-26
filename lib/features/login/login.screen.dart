@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Row(
           children: [
-            Expanded(child: SvgPicture.asset("assets/login.svg")),
+            Expanded(child: SvgPicture.asset('assets/login.svg')),
             SizedBox(
               width: size.width * 0.5,
               child: Padding(
@@ -34,22 +34,22 @@ class LoginScreen extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        "Login",
+                        'Login',
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 20),
                     LoginInputField(
                       controller: TextEditingController(),
-                      labelText: "Email address",
-                      hintText: "Enter your e-mail address",
+                      labelText: 'Email address',
+                      hintText: 'Enter your e-mail address',
                       iconData: Icons.email,
                     ),
                     const SizedBox(height: 20),
                     LoginInputField(
                       controller: TextEditingController(),
-                      labelText: "Password",
-                      hintText: "Enter your password",
+                      labelText: 'Password',
+                      hintText: 'Enter your password',
                       iconData: Icons.password,
                     ),
                     const SizedBox(height: 30),
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                           width: size.width * 0.15,
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: const Text("Login"),
+                            child: const Text('Login'),
                           ),
                         ),
                       ),
