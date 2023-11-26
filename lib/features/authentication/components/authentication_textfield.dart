@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginInputField extends StatelessWidget {
-  const LoginInputField({
+class AuthenticationInputField extends StatelessWidget {
+  const AuthenticationInputField({
     super.key,
     required this.controller,
     required this.labelText,

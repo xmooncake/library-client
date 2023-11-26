@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:library_client/features/app/bloc/app_bloc.dart';
+import 'package:library_client/features/authentication/authentication.screen.dart';
 import 'package:library_client/features/home/home.screen.dart';
 
 class AppRouter {
@@ -16,17 +17,17 @@ class AppRouter {
           path: '/',
           builder: (context, state) => const HomeScreen(),
         ),
-        // GoRoute(
-        //   path: '/login',
-        //   builder: (context, state) => (),
-        // ),
+        GoRoute(
+          path: '/auth',
+          builder: (context, state) => const AuthenticationScreen(),
+        ),
       ],
       redirect: (context, state) {
         final isLoggedIn = appBloc.state is AppAuthenticatedState;
-        final goingToLoginPage = state.uri.toString() == '/login';
+        final goingToLoginPage = state.uri.toString() == '/auth';
 
         if (!isLoggedIn && !goingToLoginPage) {
-          return '/login';
+          return '/auth';
         }
 
         if (isLoggedIn && goingToLoginPage) {
