@@ -20,9 +20,10 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeCubit(),
       child: Scaffold(
         body: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const HomeDrawer(),
-            Flexible(child: child),
+            Expanded(child: child),
           ],
         ),
       ),

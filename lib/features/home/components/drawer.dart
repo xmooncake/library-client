@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import 'package:library_client/features/app/app.dart';
+import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/app/router.dart';
+import 'package:library_client/features/core/components/user_avatar.dart';
 import 'package:library_client/features/home/cubit/home_cubit.dart';
 
-const String imageUrl = 'https://i.imgur.com/BoN9kdC.png';
 const primaryColor = Color(0xFF685BFF);
 const canvasColor = Color(0xFF2E2E48);
 const scaffoldBackgroundColor = Color(0xFF464667);
@@ -21,66 +24,26 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
 
     return SidebarX(
       controller: context.read<HomeCubit>().controller,
-      theme: SidebarXTheme(
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: canvasColor,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        hoverColor: scaffoldBackgroundColor,
-        textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-        selectedTextStyle: const TextStyle(color: Colors.white),
-        itemTextPadding: const EdgeInsets.only(left: 30),
-        selectedItemTextPadding: const EdgeInsets.only(left: 30),
-        itemDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: canvasColor),
-        ),
-        selectedItemDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: actionColor.withOpacity(0.37),
-          ),
-          gradient: const LinearGradient(
-            colors: [accentCanvasColor, canvasColor],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.28),
-              blurRadius: 30,
-            ),
-          ],
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.white.withOpacity(0.7),
-          size: 20,
-        ),
-        selectedIconTheme: const IconThemeData(
-          color: Colors.white,
-          size: 20,
-        ),
-      ),
-      extendedTheme: const SidebarXTheme(
-        width: 200,
-        decoration: BoxDecoration(
-          color: canvasColor,
-        ),
-      ),
+      theme: sideBarTheme(),
+      extendedTheme: sideBarExpandedTheme(),
       footerDivider: divider,
       headerBuilder: (context, extended) {
-        return SizedBox(
-          height: 100,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Image.network(
-              'https://play-lh.googleusercontent.com/SZpyRU_FB9qpQsO8uXRrQcC1RZ-HFvqzmB2aaJ-QdK-PA_Rg-bx90onXgHUcwZpg18k',
-            ),
-          ),
+        return UserAvatarWidget(
+          showUsername: extended,
         );
+        // return SizedBox(
+        //   height: 100,
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(16.0),
+        //     child: Image.network(
+        //       'https://play-lh.googleusercontent.com/SZpyRU_FB9qpQsO8uXRrQcC1RZ-HFvqzmB2aaJ-QdK-PA_Rg-bx90onXgHUcwZpg18k',
+        //     ),
+        //   ),
+        // );
       },
       items: [
         SidebarXItem(
@@ -99,6 +62,57 @@ class HomeDrawer extends StatelessWidget {
           onTap: () => context.go(AppRouter.settings),
         ),
       ],
+    );
+  }
+
+  SidebarXTheme sideBarExpandedTheme() {
+    return const SidebarXTheme(
+      width: 200,
+      decoration: BoxDecoration(
+        color: canvasColor,
+      ),
+    );
+  }
+
+  SidebarXTheme sideBarTheme() {
+    return SidebarXTheme(
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: canvasColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      hoverColor: scaffoldBackgroundColor,
+      textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+      selectedTextStyle: const TextStyle(color: Colors.white),
+      itemTextPadding: const EdgeInsets.only(left: 30),
+      selectedItemTextPadding: const EdgeInsets.only(left: 30),
+      itemDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: canvasColor),
+      ),
+      selectedItemDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: actionColor.withOpacity(0.37),
+        ),
+        gradient: const LinearGradient(
+          colors: [accentCanvasColor, canvasColor],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.28),
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.white.withOpacity(0.7),
+        size: 20,
+      ),
+      selectedIconTheme: const IconThemeData(
+        color: Colors.white,
+        size: 20,
+      ),
     );
   }
 }
