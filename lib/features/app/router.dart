@@ -10,54 +10,51 @@ import 'package:library_client/features/authentication/authentication.screen.dar
 import 'package:library_client/features/books/books.view.dart';
 import 'package:library_client/features/dashboard/dashboard.view.dart';
 import 'package:library_client/features/home/components/drawer.dart';
+import 'package:library_client/features/home/home.screen.dart';
 import 'package:library_client/features/settings/settings.view.dart';
 
 class AppRouter {
   AppRouter() {
     _router = GoRouter(
-      initialLocation: '/dashboard',
+      navigatorKey: _rootNavigatorKey,
+      initialLocation: dashboard,
       routes: [
         ShellRoute(
-          navigatorKey: GlobalKey<NavigatorState>(),
-          builder: (context, state, child) => Scaffold(
-            body: HomeDrawerBuilder(
-              AdvancedDrawerController(),
-              child: child,
-            ),
-          ),
+          navigatorKey: _shellNavigatorKey,
+          builder: (context, state, child) => HomeScreen(child: child),
           routes: [
             GoRoute(
-              path: '/dashboard',
+              path: dashboard,
               name: 'dashboard',
               builder: (context, state) => const DashboardView(),
             ),
             GoRoute(
-              path: '/books',
+              path: books,
               name: 'books',
               builder: (context, state) => const BooksView(),
             ),
             GoRoute(
-              path: '/settings',
+              path: settings,
               name: 'settings',
               builder: (context, state) => const SettingsView(),
             ),
           ],
         ),
         GoRoute(
-          path: '/auth',
+          path: authentication,
           builder: (context, state) => const AuthenticationScreen(),
         ),
       ],
       redirect: (context, state) {
         final isLoggedIn = appBloc.state is AppAuthenticatedState;
-        final goingToLoginPage = state.uri.toString() == '/auth';
+        final goingToLoginPage = state.uri.toString() == authentication;
 
         if (!isLoggedIn && !goingToLoginPage) {
-          return '/auth';
+          return authentication;
         }
 
         if (isLoggedIn && goingToLoginPage) {
-          return '/dashboard';
+          return dashboard;
         }
 
         return null;
@@ -65,8 +62,15 @@ class AppRouter {
     );
   }
 
+  final GlobalKey<NavigatorState> _rootNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'root');
+  final GlobalKey<NavigatorState> _shellNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shell');
+
+  // Root routes
   static const String authentication = '/auth';
 
+  // Shell routes
   static const String dashboard = '/dashboard';
   static const String books = '/books';
   static const String settings = '/settings';

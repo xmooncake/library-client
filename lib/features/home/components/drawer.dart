@@ -10,12 +10,13 @@ class HomeDrawerBuilder extends StatelessWidget {
     this.controller, {
     super.key,
     this.openRatio = 0.4,
+    required this.items,
     required this.child,
   });
 
   final AdvancedDrawerController controller;
   final double openRatio;
-
+  final List<Widget> items;
   final Widget child;
 
   static IconButton drawerButton(AdvancedDrawerController controller) =>
@@ -47,24 +48,6 @@ class HomeDrawerBuilder extends StatelessWidget {
         ),
       );
 
-  List<Widget> items(BuildContext context) => [
-        ListTile(
-          leading: const Icon(Icons.dashboard),
-          title: const Text('Dashboard'),
-          onTap: () => context.go('/dashboard'),
-        ),
-        ListTile(
-          leading: const Icon(Icons.book),
-          title: const Text('Books'),
-          onTap: () => context.go('/books'),
-        ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Settings'),
-          onTap: () => context.go('/settings'),
-        ),
-      ];
-
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -80,7 +63,7 @@ class HomeDrawerBuilder extends StatelessWidget {
         child: Column(
           children: [
             const UserCard(),
-            ...items(context),
+            ...items,
           ],
         ),
       ),

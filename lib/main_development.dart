@@ -8,5 +8,5 @@ void main() {
   // Hard code tokeeny itp
 
   // bootstrap(() => const App());
-  bootstrap(() => const Scaffold(body: SettingsView()));
+  bootstrap(() => const MaterialApp(home: Scaffold(body: SettingsView())));
 }
