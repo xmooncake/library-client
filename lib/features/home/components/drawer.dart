@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:library_client/features/home/components/user_card.dart';
 
-class HomeDrawerBulder extends StatelessWidget {
-  const HomeDrawerBulder(
+class HomeDrawerBuilder extends StatelessWidget {
+  const HomeDrawerBuilder(
     this.controller, {
     super.key,
-    this.items = const [],
     this.openRatio = 0.4,
     required this.child,
   });
 
   final AdvancedDrawerController controller;
   final double openRatio;
-  final List<Widget> items;
+
   final Widget child;
 
   static IconButton drawerButton(AdvancedDrawerController controller) =>
@@ -47,6 +47,24 @@ class HomeDrawerBulder extends StatelessWidget {
         ),
       );
 
+  List<Widget> items(BuildContext context) => [
+        ListTile(
+          leading: const Icon(Icons.dashboard),
+          title: const Text('Dashboard'),
+          onTap: () => context.go('/dashboard'),
+        ),
+        ListTile(
+          leading: const Icon(Icons.book),
+          title: const Text('Books'),
+          onTap: () => context.go('/books'),
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Settings'),
+          onTap: () => context.go('/settings'),
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
@@ -58,19 +76,15 @@ class HomeDrawerBulder extends StatelessWidget {
       childDecoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
-      drawer: _drawer,
-      child: child,
-    );
-  }
-
-  SafeArea get _drawer {
-    return SafeArea(
-      child: Column(
-        children: [
-          const UserCard(),
-          ...items,
-        ],
+      drawer: SafeArea(
+        child: Column(
+          children: [
+            const UserCard(),
+            ...items(context),
+          ],
+        ),
       ),
+      child: child,
     );
   }
 }
