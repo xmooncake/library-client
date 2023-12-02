@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:library_client/data/models/user.dart';
+import 'package:library_client/features/app/app.dart';
+import 'package:library_client/features/app/bloc/app_bloc.dart';
+
 class UserCard extends StatelessWidget {
   const UserCard({
     super.key,
@@ -7,16 +11,24 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    final user = (appBloc.state as AppAuthenticatedState).user;
+
+    return Card(
       child: Row(
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 30,
             backgroundImage:
                 NetworkImage('https://picsum.photos/seed/picsum/200/300'),
           ),
-          SizedBox(width: 10),
-          Text('John Doe', style: TextStyle(fontSize: 20)),
+          const SizedBox(width: 10),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(user.name, style: const TextStyle(fontSize: 20)),
+              Text(user.email, style: const TextStyle(fontSize: 20)),
+            ],
+          ),
         ],
       ),
     );

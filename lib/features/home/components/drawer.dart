@@ -5,27 +5,10 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:library_client/features/home/components/user_card.dart';
 
 class HomeDrawerBulder extends StatelessWidget {
-  const HomeDrawerBulder({
+  const HomeDrawerBulder(
+    this.controller, {
     super.key,
-    required this.controller,
-    this.items = const [
-      ListTile(
-        leading: Icon(Icons.home),
-        title: Text('Home'),
-      ),
-      ListTile(
-        leading: Icon(Icons.account_circle_rounded),
-        title: Text('Profile'),
-      ),
-      ListTile(
-        leading: Icon(Icons.favorite),
-        title: Text('Favourites'),
-      ),
-      ListTile(
-        leading: Icon(Icons.settings),
-        title: Text('Settings'),
-      ),
-    ],
+    this.items = const [],
     this.openRatio = 0.4,
     required this.child,
   });

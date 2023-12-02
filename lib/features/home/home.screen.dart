@@ -27,7 +27,7 @@ class _HomeScreenView extends StatelessWidget {
     return BlocProvider(
       create: (_) => HomeCubit(),
       child: HomeDrawerBulder(
-        controller: controller,
+        controller,
         items: HomeCubit.views,
         child: Scaffold(
           appBar: AppBar(
