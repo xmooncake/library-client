@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:library_client/features/app/app.dart';
 import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/authentication/authentication.screen.dart';
-import 'package:library_client/features/books/books.view.dart';
 import 'package:library_client/features/dashboard/dashboard.view.dart';
 import 'package:library_client/features/home/home.screen.dart';
+import 'package:library_client/features/publications/publications.view.dart';
 import 'package:library_client/features/settings/settings.view.dart';
 
 class AppRouter {
@@ -26,7 +26,7 @@ class AppRouter {
             ),
             GoRoute(
               path: books,
-              builder: (context, state) => const BooksView(),
+              builder: (context, state) => const PublicationsView(),
             ),
             GoRoute(
               path: settings,
@@ -71,7 +71,7 @@ class AppRouter {
 
   // Shell routes
   static const String dashboard = '/dashboard';
-  static const String books = '/books';
+  static const String books = '/publications';
   static const String settings = '/settings';
 
   late final GoRouter _router;

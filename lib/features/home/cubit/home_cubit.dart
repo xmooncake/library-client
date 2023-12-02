@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-import 'package:library_client/features/books/books.view.dart';
 import 'package:library_client/features/dashboard/dashboard.view.dart';
 import 'package:library_client/features/settings/settings.view.dart';
 
