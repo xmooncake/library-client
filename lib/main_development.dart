@@ -7,6 +7,6 @@ import 'package:library_client/features/settings/settings.view.dart';
 void main() {
   // Hard code tokeeny itp
 
-  // bootstrap(() => const App());
-  bootstrap(() => const MaterialApp(home: Scaffold(body: SettingsView())));
+  bootstrap(() => const App());
+  // bootstrap(() => const MaterialApp(home: Scaffold(body: SettingsView())));0
 }

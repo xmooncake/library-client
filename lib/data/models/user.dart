@@ -9,7 +9,7 @@ class User {
   });
 
   final int id;
+  final UserRole userRole;
   final String name;
   final String email;
-  final UserRole userRole;
 }

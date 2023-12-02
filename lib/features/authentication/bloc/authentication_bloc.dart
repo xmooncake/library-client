@@ -15,11 +15,11 @@ class AuthenticationBloc
       emit(AuthenticationLoadingState());
 
       // TODO: Replace this with a real authentication check
-      await Future.delayed(const Duration(seconds: 10));
+      // await Future.delayed(const Duration(seconds: 10));
 
       emit(AuthenticationSuccessState());
 
-      await Future.delayed(const Duration(seconds: 1));
+      // await Future.delayed(const Duration(seconds: 1));
 
       // TODO: Replace this with a real user from api
       final tempUser =

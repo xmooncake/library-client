@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:library_client/features/authentication/bloc/authentication_bloc.dart';
 import 'package:library_client/features/authentication/components/auth_button.dart';
-import 'package:library_client/features/authentication/components/authentication_textfield.dart';
+import 'package:library_client/features/core/components/custom_text_field.dart';
 
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({super.key});
@@ -50,14 +50,14 @@ class _AuthenticationView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    AuthenticationInputField(
+                    CustomTextField(
                       controller: TextEditingController(),
                       labelText: 'Email address',
                       hintText: 'Enter your e-mail address',
                       iconData: Icons.email,
                     ),
                     const SizedBox(height: 20),
-                    AuthenticationInputField(
+                    CustomTextField(
                       controller: TextEditingController(),
                       labelText: 'Password',
                       hintText: 'Enter your password',
