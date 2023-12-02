@@ -76,7 +76,9 @@ class HomeDrawer extends StatelessWidget {
           height: 100,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Image.asset('assets/images/avatar.png'),
+            child: Image.network(
+              'https://play-lh.googleusercontent.com/SZpyRU_FB9qpQsO8uXRrQcC1RZ-HFvqzmB2aaJ-QdK-PA_Rg-bx90onXgHUcwZpg18k',
+            ),
           ),
         );
       },
