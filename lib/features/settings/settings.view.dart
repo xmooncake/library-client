@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import 'package:library_client/features/app/app.dart';
-import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/core/components/user_avatar.dart';
 
 class SettingsView extends StatelessWidget {

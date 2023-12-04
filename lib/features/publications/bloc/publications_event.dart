@@ -7,4 +7,6 @@ sealed class PublicationsEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class PublicationsInitializedEvent extends PublicationsEvent {}
+
 class PublicationsFetchEvent extends PublicationsEvent {}

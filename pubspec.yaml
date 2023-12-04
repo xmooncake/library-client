@@ -18,6 +18,10 @@ dependencies:
   sidebarx: ^0.16.3
   intl: ^0.18.0
   auto_size_text: ^3.0.0
+  lottie: ^2.7.0
+  stream_transform: ^2.1.0
+  bloc_concurrency: ^0.2.2
+  searchfield: ^0.8.9
 
 dev_dependencies:
   bloc_test: ^9.1.4

@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:library_client/data/models/publication.dart';
 
 abstract class PublicationsRepositoryAbstract {
   final controller = StreamController<List<Publication>>();
+
+  bool isFinalPage = false;
 
   Stream<List<Publication>> get publicationsStream;
 

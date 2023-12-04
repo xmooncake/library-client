@@ -2,6 +2,8 @@ import 'package:library_client/data/models/publication.dart';
 import 'package:library_client/features/publications/repositories/publications_abstr.repository.dart';
 
 class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
+  PublicationsRepositoryMockImpl() : super();
+
   // Generating a list of 20 mock publications
   final List<Publication> _publications = List.generate(
     20,

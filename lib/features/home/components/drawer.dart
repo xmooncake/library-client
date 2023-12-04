@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-import 'package:library_client/features/app/app.dart';
-import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/app/router.dart';
 import 'package:library_client/features/core/components/user_avatar.dart';
 import 'package:library_client/features/home/cubit/home_cubit.dart';
@@ -24,8 +21,6 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return SidebarX(
       controller: context.read<HomeCubit>().controller,
       theme: sideBarTheme(),
@@ -44,7 +39,7 @@ class HomeDrawer extends StatelessWidget {
         ),
         SidebarXItem(
           icon: Icons.book,
-          label: 'Books',
+          label: 'Publications',
           onTap: () => context.go(AppRouter.books),
         ),
         SidebarXItem(
