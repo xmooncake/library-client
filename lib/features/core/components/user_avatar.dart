@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-import 'package:library_client/features/app/app.dart';
-import 'package:library_client/features/app/bloc/app_bloc.dart';
+import 'package:library_client/data/models/user.dart';
 
 class UserAvatarWidget extends StatelessWidget {
   const UserAvatarWidget({
-    super.key,
+    required this.user,
     this.showUsername = true,
     this.radius = 50,
   });
 
+  final User user;
   final bool showUsername;
   final double radius;
 
@@ -34,7 +34,7 @@ class UserAvatarWidget extends StatelessWidget {
           if (showUsername)
             AutoSizeText(
               maxLines: 1,
-              (appBloc.state as AppAuthenticatedState).user.name,
+              user.name,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,

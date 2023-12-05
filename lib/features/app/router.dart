@@ -14,7 +14,7 @@ class AppRouter {
   AppRouter() {
     _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: dashboard,
+      initialLocation: publications,
       routes: [
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
@@ -25,7 +25,7 @@ class AppRouter {
               builder: (context, state) => const DashboardView(),
             ),
             GoRoute(
-              path: books,
+              path: publications,
               builder: (context, state) => const PublicationsView(),
             ),
             GoRoute(
@@ -71,7 +71,7 @@ class AppRouter {
 
   // Shell routes
   static const String dashboard = '/dashboard';
-  static const String books = '/publications';
+  static const String publications = '/publications';
   static const String settings = '/settings';
 
   late final GoRouter _router;

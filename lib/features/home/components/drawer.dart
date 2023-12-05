@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import 'package:library_client/features/app/app.dart';
+import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/app/router.dart';
 import 'package:library_client/features/core/components/user_avatar.dart';
 import 'package:library_client/features/home/cubit/home_cubit.dart';
@@ -28,6 +30,7 @@ class HomeDrawer extends StatelessWidget {
       footerDivider: divider,
       headerBuilder: (context, extended) {
         return UserAvatarWidget(
+          user: (appBloc.state as AppAuthenticatedState).user,
           showUsername: extended,
         );
       },
@@ -40,7 +43,7 @@ class HomeDrawer extends StatelessWidget {
         SidebarXItem(
           icon: Icons.book,
           label: 'Publications',
-          onTap: () => context.go(AppRouter.books),
+          onTap: () => context.go(AppRouter.publications),
         ),
         SidebarXItem(
           icon: Icons.settings,
