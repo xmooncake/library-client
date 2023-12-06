@@ -16,7 +16,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         router.go('/');
       },
     );
-    on<AppLoggedOutEvent>((event, emit) => emit(AppUnauthenticatedState()));
+    on<AppLoggedOutEvent>((event, emit) {
+      router.go('/login');
+      emit(AppUnauthenticatedState());
+    });
   }
 
   late GoRouter router;

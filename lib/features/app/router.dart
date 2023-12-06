@@ -7,14 +7,15 @@ import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/authentication/authentication.screen.dart';
 import 'package:library_client/features/dashboard/dashboard.view.dart';
 import 'package:library_client/features/home/home.screen.dart';
+import 'package:library_client/features/publication_manager/publication_manager.screen.dart';
 import 'package:library_client/features/publications/publications.view.dart';
 import 'package:library_client/features/settings/settings.view.dart';
 
 class AppRouter {
-  AppRouter() {
+  AppRouter({String? initialLocation}) {
     _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: publications,
+      initialLocation: initialLocation ?? dashboard,
       routes: [
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
@@ -23,10 +24,26 @@ class AppRouter {
             GoRoute(
               path: dashboard,
               builder: (context, state) => const DashboardView(),
+              redirect: (context, state) => addPublication,
             ),
             GoRoute(
               path: publications,
               builder: (context, state) => const PublicationsView(),
+              routes: [
+                GoRoute(
+                  path: 'add-publication',
+                  builder: (context, state) => const PublicationManagerScreen(),
+                ),
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    final id = state.pathParameters['id'];
+                    return PublicationManagerScreen(
+                      publicationId: id,
+                    );
+                  },
+                ),
+              ],
             ),
             GoRoute(
               path: settings,
@@ -40,6 +57,8 @@ class AppRouter {
         ),
       ],
       redirect: (context, state) {
+        if (initialLocation != null) return null;
+
         final isLoggedIn = appBloc.state is AppAuthenticatedState;
         final goingToLoginPage = state.uri.toString() == authentication;
         final isRootPath = state.uri.toString() == '/';
@@ -73,6 +92,8 @@ class AppRouter {
   static const String dashboard = '/dashboard';
   static const String publications = '/publications';
   static const String settings = '/settings';
+  static String editPublication(int id) => '/publications/:$id';
+  static const String addPublication = '/publications/add-publication';
 
   late final GoRouter _router;
 

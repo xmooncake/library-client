@@ -22,6 +22,7 @@ dependencies:
   stream_transform: ^2.1.0
   bloc_concurrency: ^0.2.2
   searchfield: ^0.8.9
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   bloc_test: ^9.1.4

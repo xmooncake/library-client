@@ -20,15 +20,16 @@ class PublicationsBloc extends Bloc<PublicationsEvent, PublicationsState> {
         searchController = TextEditingController(),
         super(const PublicationsState()) {
     on<PublicationsInitializedEvent>((event, emit) async {
+      // Provides the initial fetch
+      add(const PublicationsFetchEvent(isInitialFetch: true));
+    });
+    on<_SubscribeToListeners>((event, emit) async {
       // Listener used for lazy loading
       scrollController.addListener(() {
         if (_isBottom && !state.isFinalPage) {
-          add(PublicationsFetchEvent());
+          add(const PublicationsFetchEvent());
         }
       });
-
-      // Provides the initial fetch
-      add(PublicationsFetchEvent());
 
       // Registers the sink
       await emit.forEach<List<Publication>>(
@@ -43,6 +44,10 @@ class PublicationsBloc extends Bloc<PublicationsEvent, PublicationsState> {
     on<PublicationsFetchEvent>(transformer: throttleDroppable(),
         (event, emit) async {
       await _publicationsRepository.fetchMorePublications();
+
+      if (event.isInitialFetch) {
+        add(_SubscribeToListeners());
+      }
     });
   }
 

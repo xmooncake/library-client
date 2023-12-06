@@ -6,6 +6,7 @@ import 'package:library_client/features/core/error/data_empty.widget.dart';
 import 'package:library_client/features/core/error/data_failed.widget.dart';
 import 'package:library_client/features/publications/bloc/publications_bloc.dart';
 import 'package:library_client/features/publications/components/bottom_loader.dart';
+import 'package:library_client/features/publications/components/fab.dart';
 import 'package:library_client/features/publications/components/publication_list_item.dart';
 import 'package:library_client/features/publications/components/search_card.dart';
 
@@ -26,14 +27,26 @@ class _PublicationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
+      child: Stack(
         children: [
-          PublicationsSearchCard(
-            searchController: context.read<PublicationsBloc>().searchController,
-            onSubmit: null,
-            onCancel: () {},
+          Column(
+            children: [
+              PublicationsSearchCard(
+                searchController:
+                    context.read<PublicationsBloc>().searchController,
+                onSubmit: null,
+                onCancel: () {},
+              ),
+              const Expanded(child: PublicationsList()),
+            ],
           ),
-          const Expanded(child: PublicationsList()),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: PublicationsFab(),
+            ),
+          ),
         ],
       ),
     );

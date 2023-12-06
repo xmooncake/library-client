@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:library_client/features/core/error/data_error_template.widget.dart';
 
 class DataEmptyWidget extends StatelessWidget {
-  const DataEmptyWidget({super.key});
+  const DataEmptyWidget({super.key, this.message = 'No data found'});
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
-    return const DataErrorWidgetTemplate(
+    return DataErrorWidgetTemplate(
       asset: 'assets/lottie/empty.json',
-      title: 'No data found',
+      title: message,
     );
   }
 }

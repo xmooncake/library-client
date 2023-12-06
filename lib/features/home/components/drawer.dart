@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -27,13 +30,25 @@ class HomeDrawer extends StatelessWidget {
       controller: context.read<HomeCubit>().controller,
       theme: sideBarTheme(),
       extendedTheme: sideBarExpandedTheme(),
-      footerDivider: divider,
+      showToggleButton: false,
       headerBuilder: (context, extended) {
         return UserAvatarWidget(
           user: (appBloc.state as AppAuthenticatedState).user,
           showUsername: extended,
         );
       },
+      footerItems: [
+        SidebarXItem(
+          icon: Icons.logout,
+          label: 'Logout',
+          onTap: () => appBloc.add(AppLoggedOutEvent()),
+        ),
+        SidebarXItem(
+          icon: Icons.power_settings_new,
+          label: 'Exit',
+          onTap: () => exit(0),
+        ),
+      ],
       items: [
         SidebarXItem(
           icon: Icons.dashboard,
@@ -73,8 +88,8 @@ class HomeDrawer extends StatelessWidget {
       hoverColor: scaffoldBackgroundColor,
       textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
       selectedTextStyle: const TextStyle(color: Colors.white),
-      itemTextPadding: const EdgeInsets.only(left: 30),
-      selectedItemTextPadding: const EdgeInsets.only(left: 30),
+      itemTextPadding: const EdgeInsets.only(left: 20),
+      selectedItemTextPadding: const EdgeInsets.only(left: 20),
       itemDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: canvasColor),

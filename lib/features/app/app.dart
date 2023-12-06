@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/app/router.dart';
 
@@ -16,6 +18,11 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(
         brightness: Brightness.dark,
+        useMaterial3: true,
+        textTheme: GoogleFonts.montserratTextTheme().apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
       ),
       routerConfig: router,
     );
