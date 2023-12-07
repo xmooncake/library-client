@@ -15,19 +15,13 @@ class AuthenticationButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(left: 10.0),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: SizedBox(
-          width: size.width * 0.15,
-          child: ElevatedButton(
-            onPressed: onPressed,
-            child: isLoading
-                ? const CircularProgressIndicator(
-                    color: Colors.white,
-                  )
-                : const Text('Login'),
-          ),
-        ),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: isLoading
+            ? const CircularProgressIndicator(
+                color: Colors.white,
+              )
+            : const Text('Login'),
       ),
     );
   }

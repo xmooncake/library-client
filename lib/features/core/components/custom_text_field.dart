@@ -23,8 +23,9 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * (widthModifier ?? 1),
-      height: MediaQuery.of(context).size.height * (heightModifier ?? 1),
+      width: widthModifier != null
+          ? MediaQuery.of(context).size.width * widthModifier!
+          : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -44,20 +45,25 @@ class CustomTextField extends StatelessWidget {
                 ),
               ],
             ),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            margin: EdgeInsets.only(top: labelText == null ? 0 : 8),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: TextFormField(
-                controller: controller,
-                decoration: InputDecoration(
-                  hintText: hintText,
-                  border: InputBorder.none,
+          SizedBox(
+            height: heightModifier != null
+                ? MediaQuery.of(context).size.height * heightModifier!
+                : null,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: EdgeInsets.only(top: labelText == null ? 0 : 8),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: TextFormField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: hintText,
+                    border: InputBorder.none,
+                  ),
+                  validator: validator,
                 ),
-                validator: validator,
               ),
             ),
           ),

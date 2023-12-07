@@ -15,10 +15,12 @@ class PublicationManagerInitializedEvent extends PublicationManagerEvent {
   final String? publicationId;
 }
 
-class PublicationManagerSavedEvent extends PublicationManagerEvent {
-  const PublicationManagerSavedEvent({
-    required this.publication,
-  });
+class PublicationManagerChangesSavedEvent extends PublicationManagerEvent {
+  const PublicationManagerChangesSavedEvent();
 
-  final Publication publication;
+  // final Publication publication;
+}
+
+class PublicationManagerOnSelectImageEvent extends PublicationManagerEvent {
+  const PublicationManagerOnSelectImageEvent();
 }

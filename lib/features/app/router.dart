@@ -24,16 +24,16 @@ class AppRouter {
             GoRoute(
               path: dashboard,
               builder: (context, state) => const DashboardView(),
-              redirect: (context, state) => addPublication,
+              redirect: (context, state) => dashboard,
+            ),
+            GoRoute(
+              path: addPublication,
+              builder: (context, state) => const PublicationManagerScreen(),
             ),
             GoRoute(
               path: publications,
               builder: (context, state) => const PublicationsView(),
               routes: [
-                GoRoute(
-                  path: 'add-publication',
-                  builder: (context, state) => const PublicationManagerScreen(),
-                ),
                 GoRoute(
                   path: ':id',
                   builder: (context, state) {
@@ -93,7 +93,7 @@ class AppRouter {
   static const String publications = '/publications';
   static const String settings = '/settings';
   static String editPublication(int id) => '/publications/:$id';
-  static const String addPublication = '/publications/add-publication';
+  static const String addPublication = '/add-publication';
 
   late final GoRouter _router;
 

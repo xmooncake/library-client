@@ -20,6 +20,9 @@ class PublicationManagerBloc
           id: event.publicationId! as int,
           title: 'Publication title',
           description: 'Publication description',
+          authorName: 'John Doe',
+          category: 'Thriller',
+          pageCount: 200,
           releaseYear: 2021,
           publicationType: PublicationType.book,
           createdAt: DateTime.now(),
@@ -35,7 +38,10 @@ class PublicationManagerBloc
         emit(state.copyWith(status: PublicationManagerStus.success));
       }
     });
-    on<PublicationManagerSavedEvent>((event, emit) {});
+    on<PublicationManagerChangesSavedEvent>((event, emit) {
+      // TODO: save changes to API or add new publication and emit success/error state
+    });
+    on<PublicationManagerOnSelectImageEvent>((event, emit) {});
   }
 
   bool _isEditing = false;

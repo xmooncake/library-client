@@ -41,14 +41,15 @@ class _AuthenticationView extends StatelessWidget {
                 padding: const EdgeInsets.all(120.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Login',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                    // const Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: Text(
+                    //     'Login',
+                    //     textAlign: TextAlign.center,
+                    //   ),
+                    // ),
                     const SizedBox(height: 20),
                     CustomTextField(
                       controller: TextEditingController(),

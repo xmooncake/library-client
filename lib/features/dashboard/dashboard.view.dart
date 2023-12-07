@@ -7,12 +7,8 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CustomTextField(
-        controller: TextEditingController(),
-        labelText: 'labelText',
-        hintText: 'hintText',
-      ),
+    return const Center(
+      child: Text('Dashboard'),
     );
   }
 }

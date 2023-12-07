@@ -23,6 +23,7 @@ dependencies:
   bloc_concurrency: ^0.2.2
   searchfield: ^0.8.9
   google_fonts: ^6.1.0
+  image_picker: ^1.0.4
 
 dev_dependencies:
   bloc_test: ^9.1.4

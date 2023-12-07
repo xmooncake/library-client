@@ -37,23 +37,16 @@ class HomeDrawer extends StatelessWidget {
           showUsername: extended,
         );
       },
-      footerItems: [
-        SidebarXItem(
-          icon: Icons.logout,
-          label: 'Logout',
-          onTap: () => appBloc.add(AppLoggedOutEvent()),
-        ),
-        SidebarXItem(
-          icon: Icons.power_settings_new,
-          label: 'Exit',
-          onTap: () => exit(0),
-        ),
-      ],
       items: [
         SidebarXItem(
           icon: Icons.dashboard,
           label: 'Dashboard',
           onTap: () => context.go(AppRouter.dashboard),
+        ),
+        SidebarXItem(
+          icon: Icons.add,
+          label: 'Add publication',
+          onTap: () => context.go(AppRouter.addPublication),
         ),
         SidebarXItem(
           icon: Icons.book,
@@ -64,6 +57,18 @@ class HomeDrawer extends StatelessWidget {
           icon: Icons.settings,
           label: 'Settings',
           onTap: () => context.go(AppRouter.settings),
+        ),
+      ],
+      footerItems: [
+        SidebarXItem(
+          icon: Icons.logout,
+          label: 'Logout',
+          onTap: () => appBloc.add(AppLoggedOutEvent()),
+        ),
+        SidebarXItem(
+          icon: Icons.power_settings_new,
+          label: 'Exit',
+          onTap: () => exit(0),
         ),
       ],
     );

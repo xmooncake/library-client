@@ -12,6 +12,10 @@ class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
       title: 'Super Book $index',
       description: 'A compelling read, full of intriguing twists and turns.',
       releaseYear: 2000 + index,
+      authorName: 'John Doe',
+      pageCount: 200 + index,
+      category: 'Thriller',
+      isAvailable: true,
       publicationType: PublicationType.book, // Or magazine, based on your logic
       createdAt: DateTime.now().subtract(Duration(days: index * 30)),
       rating: (index % 5) + 1.0, // Mock rating between 1.0 to 5.0
