@@ -24,7 +24,8 @@ class AppRouter {
             GoRoute(
               path: dashboard,
               builder: (context, state) => const DashboardView(),
-              redirect: (context, state) => dashboard,
+              // TODO: remove this redirect
+              redirect: (context, state) => publications,
             ),
             GoRoute(
               path: addPublication,

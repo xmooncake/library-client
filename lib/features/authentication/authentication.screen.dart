@@ -51,14 +51,14 @@ class _AuthenticationView extends StatelessWidget {
                     //   ),
                     // ),
                     const SizedBox(height: 20),
-                    CustomTextField(
+                    LabeledTextField(
                       controller: TextEditingController(),
                       labelText: 'Email address',
                       hintText: 'Enter your e-mail address',
                       icon: const Icon(Icons.email),
                     ),
                     const SizedBox(height: 20),
-                    CustomTextField(
+                    LabeledTextField(
                       controller: TextEditingController(),
                       labelText: 'Password',
                       hintText: 'Enter your password',

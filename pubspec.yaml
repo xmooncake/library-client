@@ -24,6 +24,7 @@ dependencies:
   searchfield: ^0.8.9
   google_fonts: ^6.1.0
   image_picker: ^1.0.4
+  expansion_tile_group: ^1.2.4
 
 dev_dependencies:
   bloc_test: ^9.1.4

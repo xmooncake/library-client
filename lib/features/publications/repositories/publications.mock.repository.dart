@@ -15,7 +15,6 @@ class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
       authorName: 'John Doe',
       pageCount: 200 + index,
       category: 'Thriller',
-      isAvailable: true,
       publicationType: PublicationType.book, // Or magazine, based on your logic
       createdAt: DateTime.now().subtract(Duration(days: index * 30)),
       rating: (index % 5) + 1.0, // Mock rating between 1.0 to 5.0
@@ -25,7 +24,7 @@ class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
 
   @override
   Future<void> fetchMorePublications() async {
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 1));
 
     super.controller.sink.add(_publications);
   }

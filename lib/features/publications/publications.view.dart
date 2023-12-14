@@ -6,6 +6,7 @@ import 'package:library_client/features/core/error/data_empty.widget.dart';
 import 'package:library_client/features/core/error/data_failed.widget.dart';
 import 'package:library_client/features/publications/bloc/publications_bloc.dart';
 import 'package:library_client/features/publications/components/bottom_loader.dart';
+import 'package:library_client/features/publications/components/custom_expansion_tile.dart';
 import 'package:library_client/features/publications/components/fab.dart';
 import 'package:library_client/features/publications/components/publication_list_item.dart';
 import 'package:library_client/features/publications/components/search_card.dart';
@@ -37,7 +38,7 @@ class _PublicationsView extends StatelessWidget {
                 onSubmit: null,
                 onCancel: () {},
               ),
-              const Expanded(child: PublicationsList()),
+              const Expanded(child: PublicationsGrid()),
             ],
           ),
           Padding(
@@ -53,16 +54,49 @@ class _PublicationsView extends StatelessWidget {
   }
 }
 
-class PublicationsList extends StatelessWidget {
-  const PublicationsList({
+class PublicationsGrid extends StatelessWidget {
+  const PublicationsGrid({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 350,
+            child: CustomExpansionTileCard(
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(),
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Image.asset('assets/book_image.png'),
+                  ),
+                  const Text('Super ksiomżka'),
+                  const Text('Sumper autor'),
+                ],
+              ),
+              children: const [
+                Text('dkaosd'),
+                Text('asidjao'),
+                Text('asidjao'),
+                Text('asidjao'),
+                Text('asidjao'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
     // TODO: Requires better soulution
     // Workaround to achieve closing previous tile upon selecting another
     // https://stackoverflow.com/questions/72315755/close-an-expansiontile-when-another-expansiontile-is-tapped
+
     int selectedTile = -1;
 
     return BlocBuilder<PublicationsBloc, PublicationsState>(
@@ -80,11 +114,14 @@ class PublicationsList extends StatelessWidget {
             }
 
             return ListView.builder(
+              // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //   crossAxisCount: 3, // Adjust the number of columns as needed
+              // ),
               physics: const AlwaysScrollableScrollPhysics(),
-              shrinkWrap: true,
+              // itemExtent: 200,
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.publications.length
-                    ? const BottomLoader()
+                    ? const Center(child: BottomLoader())
                     : PublicationListItem(
                         isExpanded: index == selectedTile,
                         onExpansionChanged: (value) {

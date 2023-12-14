@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:library_client/data/models/publication.dart';
@@ -38,7 +39,7 @@ class PublicationManagerScreen extends StatelessWidget {
               ),
               onPressed: () => context
                   .read<PublicationManagerBloc>()
-                  .add(PublicationManagerChangesSavedEvent()),
+                  .add(const PublicationManagerChangesSavedEvent()),
               child: const Text('SAVE CHANGES'),
             ),
           ),
@@ -50,11 +51,11 @@ class PublicationManagerScreen extends StatelessWidget {
             PublicationManagerSection(
               children: [
                 const ImagePickerWidget(),
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Book title',
                   hintText: 'Enter book title',
                 ),
-                CustomTextField(
+                LabeledTextField(
                   heightModifier: 0.3,
                   labelText: 'Book description',
                   hintText: 'Enter book description',
@@ -63,23 +64,23 @@ class PublicationManagerScreen extends StatelessWidget {
             ),
             PublicationManagerSection(
               children: [
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Author name',
                   hintText: 'Enter author name',
                 ),
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Release year',
                   hintText: 'Enter release year',
                 ),
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Page count',
                   hintText: 'Enter page count',
                 ),
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Category',
                   hintText: 'Enter publication category',
                 ),
-                CustomTextField(
+                LabeledTextField(
                   labelText: 'Language',
                   hintText: 'Enter publication language',
                 ),

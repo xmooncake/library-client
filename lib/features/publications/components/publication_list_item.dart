@@ -15,44 +15,21 @@ class PublicationListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Padding tileDataRow({
-      required String title,
-      required Widget item,
-      // double padding = 5,
-    }) {
-      return Padding(
-        padding: const EdgeInsets.all(5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            item,
-          ],
-        ),
-      );
-    }
-
     return Card(
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           key: UniqueKey(),
           onExpansionChanged: onExpansionChanged,
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const SizedBox(
-            height: 120,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-            ),
-          ),
+          title: Text(publication.title),
           initiallyExpanded: isExpanded,
+          children: [
+            Row(
+              children: [
+                Image.asset('assets/book_image.png'),
+              ],
+            ),
+          ],
         ),
       ),
     );
