@@ -25,6 +25,7 @@ dependencies:
   google_fonts: ^6.1.0
   image_picker: ^1.0.4
   expansion_tile_group: ^1.2.4
+  auto_height_grid_view: ^1.0.0
 
 dev_dependencies:
   bloc_test: ^9.1.4

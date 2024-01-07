@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'package:library_client/data/models/publication.dart';
-import 'package:library_client/features/publications/repositories/publications_abstr.repository.dart';
+import 'package:library_client/features/publications/repositories/publications.repository.dart';
 import 'package:library_client/features/publications/repositories/publications_mock.repository.dart';
 
 part 'publications_event.dart';
@@ -37,10 +37,10 @@ class PublicationsBloc extends Bloc<PublicationsEvent, PublicationsState> {
         onData: (List<Publication> data) => state.copyWith(
           status: PublicationsStatus.success,
           publications: [...state.publications, ...data],
-          isFinalPage: _publicationsRepository.isFinalPage,
         ),
       );
     });
+
     on<PublicationsFetchEvent>(transformer: throttleDroppable(),
         (event, emit) async {
       await _publicationsRepository.fetchMorePublications();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:library_client/features/app/app.dart';
 import 'package:library_client/features/app/bloc/app_bloc.dart';
-import 'package:library_client/features/core/components/user_avatar.dart';
+import 'package:library_client/features/shared/components/user_avatar.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:library_client/data/models/publication.dart';
-import 'package:library_client/features/core/components/custom_text_field.dart';
+import 'package:library_client/features/shared/components/custom_text_field.dart';
 import 'package:library_client/features/publication_manager/bloc/publication_manager_bloc.dart';
 import 'package:library_client/features/publication_manager/components/image_picker.dart';
 import 'package:library_client/features/publication_manager/components/section.dart';

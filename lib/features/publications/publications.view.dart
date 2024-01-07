@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_height_grid_view/auto_height_grid_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:library_client/features/core/error/data_empty.widget.dart';
-import 'package:library_client/features/core/error/data_failed.widget.dart';
 import 'package:library_client/features/publications/bloc/publications_bloc.dart';
 import 'package:library_client/features/publications/components/bottom_loader.dart';
-import 'package:library_client/features/publications/components/custom_expansion_tile.dart';
 import 'package:library_client/features/publications/components/fab.dart';
-import 'package:library_client/features/publications/components/publication_list_item.dart';
+import 'package:library_client/features/publications/components/publications_card.dart';
 import 'package:library_client/features/publications/components/search_card.dart';
+import 'package:library_client/features/shared/error/data_empty.widget.dart';
+import 'package:library_client/features/shared/error/data_failed.widget.dart';
 
 class PublicationsView extends StatelessWidget {
   const PublicationsView({super.key});
@@ -61,62 +61,6 @@ class PublicationsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: 500,
-            child: CustomExpansionTileCard(
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(
-                        12.0,
-                      ),
-                    ), // Adjust the radius to match your card's border radius
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Image.asset(
-                          'assets/book_image.png',
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text('Super ksiomżka'),
-                      Text('Sumper autor'),
-                    ],
-                  ),
-                ],
-              ),
-              children: const [
-                Text('dkaosd'),
-                Text('asidjao'),
-                Text('asidjao'),
-                Text('asidjao'),
-                Text('asidjao'),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-
-    // TODO: Requires better soulution
-    // Workaround to achieve closing previous tile upon selecting another
-    // https://stackoverflow.com/questions/72315755/close-an-expansiontile-when-another-expansiontile-is-tapped
-
-    int selectedTile = -1;
-
     return BlocBuilder<PublicationsBloc, PublicationsState>(
       builder: (context, state) {
         switch (state.status) {
@@ -131,32 +75,38 @@ class PublicationsGrid extends StatelessWidget {
               return const DataEmptyWidget();
             }
 
-            return ListView.builder(
-              // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //   crossAxisCount: 3, // Adjust the number of columns as needed
-              // ),
-              physics: const AlwaysScrollableScrollPhysics(),
-              // itemExtent: 200,
-              itemBuilder: (BuildContext context, int index) {
-                return index >= state.publications.length
-                    ? const Center(child: BottomLoader())
-                    : PublicationListItem(
-                        isExpanded: index == selectedTile,
-                        onExpansionChanged: (value) {
-                          if (value) {
-                            selectedTile = index;
-                          } else {
-                            selectedTile = -1;
-                          }
-                        },
-                        publication: state.publications[index],
-                      );
-              },
+            return AutoHeightGridView(
               itemCount: state.isFinalPage
                   ? state.publications.length
                   : state.publications.length + 1,
               controller: context.read<PublicationsBloc>().scrollController,
+              crossAxisCount: 3,
+              padding: const EdgeInsets.all(12),
+              builder: (context, index) {
+                return index >= state.publications.length
+                    ? const Center(child: BottomLoader())
+                    : PublicationsCard(
+                        publication: state.publications[index],
+                      );
+              },
             );
+
+          // return GridView.builder(
+          //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 3, // Adjust the number of columns as needed
+          //   ),
+          //   physics: const AlwaysScrollableScrollPhysics(),
+          //   // itemExtent: 200,
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return index >= state.publications.length
+          //         ? const Center(child: BottomLoader())
+          //         : publicationsExpansionCard();
+          //   },
+          //   itemCount: state.isFinalPage
+          //       ? state.publications.length
+          //       : state.publications.length + 1,
+          //   controller: context.read<PublicationsBloc>().scrollController,
+          // );
         }
       },
     );

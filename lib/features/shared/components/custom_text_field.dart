@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:library_client/features/core/components/labeled_field.dart';
+import 'package:library_client/features/shared/components/labeled_field.dart';
 
 class LabeledTextField extends StatelessWidget {
   LabeledTextField({

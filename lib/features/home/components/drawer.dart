@@ -10,7 +10,7 @@ import 'package:sidebarx/sidebarx.dart';
 import 'package:library_client/features/app/app.dart';
 import 'package:library_client/features/app/bloc/app_bloc.dart';
 import 'package:library_client/features/app/router.dart';
-import 'package:library_client/features/core/components/user_avatar.dart';
+import 'package:library_client/features/shared/components/user_avatar.dart';
 import 'package:library_client/features/home/cubit/home_cubit.dart';
 
 const primaryColor = Color(0xFF685BFF);
