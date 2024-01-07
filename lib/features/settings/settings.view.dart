@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:library_client/features/app/app.dart';
 import 'package:library_client/features/app/bloc/app_bloc.dart';
+import 'package:library_client/features/settings/components/account_detail.view.dart';
 import 'package:library_client/features/shared/components/user_avatar.dart';
 
 class SettingsView extends StatelessWidget {
@@ -33,10 +34,6 @@ class SettingsView extends StatelessWidget {
                         onTap: () {},
                       ),
                       ListTile(
-                        title: const Text('Address Information'),
-                        onTap: () {},
-                      ),
-                      ListTile(
                         title: const Text('Change Password'),
                         onTap: () {},
                       ),
@@ -44,14 +41,8 @@ class SettingsView extends StatelessWidget {
                   ),
                 ),
               ),
-              const Flexible(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Siaiaiaiaia'),
-                  ],
-                ),
-              ),
+              const AccountDetailsWidget(),
+              //const ChangePasswordWidget(),
             ],
           ),
         ),

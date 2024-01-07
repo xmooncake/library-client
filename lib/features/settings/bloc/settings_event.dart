@@ -6,3 +6,15 @@ sealed class SettingsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class SettingsAccountInformationEvent extends SettingsEvent {
+  const SettingsAccountInformationEvent();
+}
+
+class SettingsAddressInformationEvent extends SettingsEvent {
+  const SettingsAddressInformationEvent();
+}
+
+class SettingsChangePasswordEvent extends SettingsEvent {
+  const SettingsChangePasswordEvent();
+}

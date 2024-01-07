@@ -1,12 +1,14 @@
 part of 'settings_bloc.dart';
 
-sealed class SettingsState extends Equatable {
+class SettingsState extends Equatable {
   const SettingsState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class SettingsAccountInformationState extends SettingsState {
-  const SettingsAccountInformationState();
-}
+class SettingsAccountInformationState extends SettingsState {}
+
+class SettingsAddressInformationState extends SettingsState {}
+
+class SettingsChangePasswordState extends SettingsState {}
