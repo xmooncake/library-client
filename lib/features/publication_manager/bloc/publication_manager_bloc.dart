@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:library_client/data/models/publication.dart';
+import 'package:library_client/data/models/publication_type.dart';
 
 part 'publication_manager_event.dart';
 part 'publication_manager_state.dart';
@@ -20,7 +21,7 @@ class PublicationManagerBloc
           id: event.publicationId! as int,
           title: 'Publication title',
           description: 'Publication description',
-          authorName: 'John Doe',
+          author: 'John Doe',
           category: 'Thriller',
           pageCount: 200,
           releaseYear: 2021,

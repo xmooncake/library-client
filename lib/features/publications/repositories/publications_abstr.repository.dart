@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:library_client/data/models/publication.dart';
 
-abstract class PublicationsRepositoryAbstract {
+abstract class PublicationsRepository {
   final controller = StreamController<List<Publication>>();
 
   bool isFinalPage = false;

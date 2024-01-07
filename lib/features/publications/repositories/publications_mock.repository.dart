@@ -1,8 +1,9 @@
 import 'package:library_client/data/models/publication.dart';
+import 'package:library_client/data/models/publication_type.dart';
 import 'package:library_client/features/publications/repositories/publications_abstr.repository.dart';
 
-class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
-  PublicationsRepositoryMockImpl() : super();
+class MockPublicationsRepository extends PublicationsRepository {
+  MockPublicationsRepository() : super();
 
   // Generating a list of 20 mock publications
   final List<Publication> _publications = List.generate(
@@ -12,13 +13,11 @@ class PublicationsRepositoryMockImpl extends PublicationsRepositoryAbstract {
       title: 'Super Book $index',
       description: 'A compelling read, full of intriguing twists and turns.',
       releaseYear: 2000 + index,
-      authorName: 'John Doe',
+      author: 'John Doe',
       pageCount: 200 + index,
       category: 'Thriller',
       publicationType: PublicationType.book, // Or magazine, based on your logic
       createdAt: DateTime.now().subtract(Duration(days: index * 30)),
-      rating: (index % 5) + 1.0, // Mock rating between 1.0 to 5.0
-      ratingCount: (index * 10) + 5, // Mock rating count between 5
     ),
   );
 

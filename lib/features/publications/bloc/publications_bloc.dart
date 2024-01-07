@@ -7,15 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'package:library_client/data/models/publication.dart';
-import 'package:library_client/features/publications/repositories/publications.mock.repository.dart';
 import 'package:library_client/features/publications/repositories/publications_abstr.repository.dart';
+import 'package:library_client/features/publications/repositories/publications_mock.repository.dart';
 
 part 'publications_event.dart';
 part 'publications_state.dart';
 
 class PublicationsBloc extends Bloc<PublicationsEvent, PublicationsState> {
   PublicationsBloc()
-      : _publicationsRepository = PublicationsRepositoryMockImpl(),
+      : _publicationsRepository = MockPublicationsRepository(),
         scrollController = ScrollController(),
         searchController = TextEditingController(),
         super(const PublicationsState()) {
@@ -51,7 +51,7 @@ class PublicationsBloc extends Bloc<PublicationsEvent, PublicationsState> {
     });
   }
 
-  final PublicationsRepositoryAbstract _publicationsRepository;
+  final PublicationsRepository _publicationsRepository;
   final ScrollController scrollController;
   final TextEditingController searchController;
 

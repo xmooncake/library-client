@@ -66,18 +66,36 @@ class PublicationsGrid extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 350,
+            width: 500,
             child: CustomExpansionTileCard(
               title: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    decoration: const BoxDecoration(),
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Image.asset('assets/book_image.png'),
+                  ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(
+                        12.0,
+                      ),
+                    ), // Adjust the radius to match your card's border radius
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Image.asset(
+                          'assets/book_image.png',
+                        ),
+                      ),
+                    ),
                   ),
-                  const Text('Super ksiomżka'),
-                  const Text('Sumper autor'),
+                  const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Super ksiomżka'),
+                      Text('Sumper autor'),
+                    ],
+                  ),
                 ],
               ),
               children: const [

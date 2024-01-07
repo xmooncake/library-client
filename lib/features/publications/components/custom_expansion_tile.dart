@@ -41,13 +41,16 @@ class _CustomExpansionTileCardState extends State<CustomExpansionTileCard>
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-      child: Card(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Column(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Card(
+            margin: EdgeInsets.zero,
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 ExpansionTileItem(
+                  onExpansionChanged: (value) =>
+                      value ? _controller.forward() : _controller.reverse(),
                   tilePadding: EdgeInsets.zero,
                   childrenPadding: EdgeInsets.zero,
                   isDefaultVerticalPadding: false,
@@ -85,9 +88,9 @@ class _CustomExpansionTileCardState extends State<CustomExpansionTileCard>
                   ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
